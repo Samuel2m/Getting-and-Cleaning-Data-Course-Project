@@ -1,18 +1,18 @@
-#Getting and Cleaning Data Project
+#**Getting and Cleaning Data Project**
 
 
-##Description
+##**Description**
 
 The scope of this project is to transform raw data into a tidy data set.
 
-##Source Data
+##**Source Data**
 
 The full description of the data can be found at the UCI Machine Learning repository.
 The data set can be found at the following URL:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
 
-##Data Set Information
+##**Data Set Information**
 
 Information come from the UCI Machine learning repository:
 
@@ -31,7 +31,7 @@ Its activity label.
 An identifier of the subject who carried out the experiment.
 
 
-##Section 1. Merging the training and the test sets to create one data set
+##**Section 1. Merging the training and the test sets to create one data set**
 
 After setting the working repository, the following tables (txt files) are read with the read.table function:
 
@@ -44,23 +44,24 @@ subject_test.txt
 x_test.txt
 y_test.txt
 
-Those tables are merged, then names are attributed to columns.
+The training and test data sets are first binded separately(with cbind) then are merged ina  single dataset with rbind. Then, names are attributed to columns.
 
-##Section 2. Extracting only the measurements on the mean and standard deviation for each measurement
+##**Section 2. Extracting only the measurements on the mean and standard deviation for each measurement**
 
-Creation of a logical vector containing TRUE values for the ID, mean and standard deviation columns and FALSE values otherwise. This vector is used to keep the wanted columns.
+Creating a logical vector 'logVector' containing TRUE values for the ID, mean and standard deviation columns and FALSE values otherwise. This vector is used to subset the wanted columns, we get the dataFinal table.
 
-Section 3. Using descriptive activity names to name the activities in the data set
+**Section 3. Using descriptive activity names to name the activities in the data set**
 
-Merge the data set obtained thus far with the activityType table to get the descriptive activity names
+Merging the dataFinal table with the activityType table to get the descriptive activity names
 
 
-Section 4. Appropriately labeling the data set with descriptive variable names
+**Section 4. Appropriately labeling the data set with descriptive variable names**
 
-Cleaning the column names thanks to the gsub function to obtain tidy names
+Cleaning the column names thanks to the gsub function to obtain tidy names, and updating the column names of dataFinal with the colnames function.
 
-Section 5. From the data set in step 4, creating a second, independent tidy data set with the average of each variable for each activity and each subject
 
-We only need the average of each variable for each activity and subject in the dataset
-Then write down the tidy data set in the working directory?
+**Section 5. From the data set in step 4, creating a second, independent tidy data set with the average of each variable for each activity and each subject**
+
+We only need the average of each variable for each activity and subject in the dataset, we obtain it thanks to the aggregate function.
+Then just writing down the tidy data set in the working directory.
 
